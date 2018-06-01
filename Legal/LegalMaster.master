@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="LegalMaster.master.cs" Inherits="MainMaster" %>
+<%@ Register Src="~/Legal/UserControl/EntryLevel.ascx" TagName="EntryLevel" TagPrefix="cc1" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="<%= ResolveUrl("~/Content/img/favicon.ico")%>" type="image/x-icon" />
+     <link href="<%# ResolveUrl("~/Content/css/fa.css")%>" rel="stylesheet" />
+    <link href="<%# ResolveUrl("~/Content/css/bootstrap.css")%>" rel="stylesheet" />     
+    <link href="<%# ResolveUrl("~/Content/css/jquery-ui.css")%>" rel="stylesheet" />
+     <link href="<%# ResolveUrl("~/Content/css/Legal/style.css")%>" rel="stylesheet" />
+    <script type="text/javascript" src="<%# ResolveUrl("~/Content/js/jquery.js") %>"></script>
+    <script type="text/javascript" src="<%# ResolveUrl("~/Content/js/jquery-ui.min.js") %>"></script>
+    <script type="text/javascript" src="<%# ResolveUrl("~/Content/js/bootstrap.js") %>"></script>
+    <script type="text/javascript" src="<%# ResolveUrl("~/Content/js/app.js") %>"></script>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="sidebar-collapsed">
+    <form id="form1" runat="server">
+        <div>
+            <div class="wrapper">
+                <div class="header">
+                    <span class="collapse-menu"></span>
+                    <span runat="server" id="logo" class="logo">
+                        <img src="<%# ResolveUrl("~/Content/img/ida.png") %>" class="logo" /></span>
+                    <%--<asp:LinkButton ID="lnklogout" runat="server" OnClick="lnklogout_Click"><span class="logout"></span></asp:LinkButton>--%>
+                    <h3 class="system-name">Legal Cases Follow-up System</h3>
+                     <div class="container-fluid user-label">
+                    <ul class="user-label-text">
+                        <li><i class="fa r fa-user"></i> <asp:Label Text="" ID="lblUserName" runat="server" /></li>
+                    </ul>                 
+                    <ul class="user-label-nav">
+                       <li><a href="<%= ResolveUrl("~/Legal/Dashboard.aspx") %>"> <i class="fa r fa-home"></i>Dashboard Home</a></li>
+                       <li><a href="<%= ResolveUrl("~/frmSystem.aspx") %>"> <i class="fa r fa-home"></i>Home</a></li>
+                        <li><asp:LinkButton ID="lnklogout" runat="server" OnClick="lnklogout_Click"><i class="fa r fa-power-off"></i> Logout</asp:LinkButton></li>
+                    </ul>                 
+                </div>
+                </div>
+                <div id="sideBar" runat="server" class="sidebar">
+                    <div class="sidebar-inner">
+                        
+                        
+                         <cc1:EntryLevel Visible="true" runat="server" ID="EntryLevel" />
+
+
+                    </div>
+                </div>
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+    <!-- Scripts Start -->
+
+
+    <!-- Scripts End -->
+</body>
+</html>

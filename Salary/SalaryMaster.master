@@ -1,0 +1,212 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SalaryMaster.master.cs" Inherits="MainMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="Content/img/favicon.ico" type="image/x-icon" />
+    <link href="<%= ResolveUrl("~/Content/css/Salary/style.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/css/fa.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/css/bootstrap.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/css/jquery-ui.css") %>" rel="stylesheet" />
+
+    <script src="<%= ResolveUrl("~/Content/js/jquery.js") %>" type="text/javascript"></script>    
+    <script src="<%= ResolveUrl("~/Content/js/bootstrap.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Content/js/app.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Content/js/Index.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Content/js/jquery-ui.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Content/js/chosen.jquery.js") %>" type="text/javascript"></script>
+    <script type="text/javascript">
+        function DisableBackButtonAllBrowsers() {
+            window.history.forward()
+        };
+        DisableBackButtonAllBrowsers();
+        window.onload = DisableBackButtonAllBrowsers;
+        window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
+        window.onunload = function () { void (0) };
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="sidebar-collapsed">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="scriptmanager1" AsyncPostBackTimeout="300" runat="server"></asp:ScriptManager>
+        <div>
+            <div class="wrapper">
+                <div class="header">
+                    <span class="collapse-menu"></span>
+                    <span class="logo">
+                        <img src="<%= ResolveUrl("~/Content/img/ida.png") %>" class="logo" /></span>
+                    <%--<asp:LinkButton runat="server" ID="lnlLogOut" OnClick="lnlLogOut_Click"><span class="logout"></span></asp:LinkButton>--%>
+                    <h3 class="system-name">Salary Management System</h3>
+                    <div class="container-fluid user-label">
+                        <ul class="user-label-text">
+                            <li><i class="fa r fa-user"></i>
+                                <asp:Label Text="" ID="lblUserName" runat="server" /></li>
+                            <li><i class="fa r fa-calendar"></i>
+                                <asp:Label Text="" ID="lblMonth" runat="server" /></li>
+                        </ul>
+                        <ul class="user-label-nav">
+                            <li><a href="<%= ResolveUrl("~/Salary/Dashboard.aspx") %>"><i class="fa r fa-home"></i>Dashboard Home</a></li>
+                            <li><a href="<%= ResolveUrl("~/frmSystem.aspx") %>"><i class="fa r fa-home"></i>Home</a></li>
+                            <li>
+                                <asp:LinkButton runat="server" ID="lnlLogOut" OnClick="lnlLogOut_Click"> <i class="fa r fa-power-off"></i> Logout</asp:LinkButton></li>
+                        </ul>
+                    </div>
+                </div>
+                <style>
+                    .disabledbutton {
+                        pointer-events: none;
+                        opacity: 0.4;
+                    }
+                </style>
+                <div class="sidebar">
+                    <div class="sidebar-inner">
+
+                        <ul class="sidenav" id="myGroup">
+                            <asp:Panel ID="HideMenuForOtherMonth" runat="server" CssClass="disabledbutton">
+                                <li>
+                                    <a href="#" data-toggle="collapse" data-target="#Master" class="collapsed child-1"><i class="fa   fa-user fa-sidenav"></i><span class="text-sidenav">Master</span></a>
+                                    <ul class="sidenav collapse" id="Master">
+                                        <li><a href="#" data-toggle="collapse" data-target="#Entry" class="collapsed"><span class="text-sidenav">Entry</span></a>
+                                            <ul class="sidenav collapse" id="Entry">
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_EmplyeeEntryMaster.aspx")%>"><span class="text-sidenav">Employee Master</span></a></li>
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_LeaveMaster.aspx")%>"><span class="text-sidenav">Leave Master</span></a></li>
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_LoanMaster.aspx")%>"><span class="text-sidenav">Loan Master</span></a></li>
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/TransactionForm/Frm_Earning_DeductionDetails.aspx")%>"><span class="text-sidenav">Earning / Deduction</span></a></li>
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/TransactionForm/Frm_Bank.aspx")%>"><span class="text-sidenav">Bank </span></a></li>
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_LicPolicy.aspx")%>"><span class="text-sidenav">LIC Policy</span></a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="collapse" data-target="#Updation" class="collapsed  child-1"><span class="text-sidenav">Updation</span></a>
+                                            <ul class="sidenav collapse" id="Updation">
+                                                <li runat="server"><a href="<%= ResolveUrl("~/Salary/MasterForm/FrmEdit_EmplyeeEntryMaster.aspx")%>"><span class="text-sidenav">Employee Master Updation</span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-toggle="collapse" data-target="#Transaction" class="collapsed child-1">
+                                        <i class="fa fa-server fa-sidenav"></i>
+                                        <span class="text-sidenav">Transaction</span>
+                                    </a>
+                                    <ul class="sidenav collapse" id="Transaction">
+                                        <li><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_LeaveTrans.aspx")%>"><span class="text-sidenav">Leave Trasaction</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_AmendmentEarningDeduction.aspx")%>"><span class="text-sidenav">Amendment Earning Deduction</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/Trans_ManualPatrak.aspx")%>"><span class="text-sidenav">Supplementary Patrak</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_Trasstopay.aspx")%>"><span class="text-sidenav">Stop Payment</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_RrdIndication.aspx")%>"><span class="text-sidenav">RRD Indication</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/FrmLeaveOpening.aspx")%>"><span class="text-sidenav">Leave Opening</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/FrmLoanOpening.aspx")%>"><span class="text-sidenav">New Loan</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/FrmRetirmentBenfit.aspx")%>"><span class="text-sidenav">Retirement Benefit</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/FrmPFCharge.aspx")%>"><span class="text-sidenav">PF Charges</span></a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#" data-toggle="collapse" data-target="#Utility" class="collapsed child-1">
+                                        <i class="fa fa-cog fa-sidenav"></i>
+                                        <span class="text-sidenav">Utility</span>
+                                    </a>
+                                    <ul class="sidenav collapse" id="Utility">
+                                        <li class="list-item-2"><a href="<%= ResolveUrl("~/Salary/MasterForm/FrmMonthImport.aspx")%>" title="IMPORT MONTH "><span>Import Month </span></a></li>
+                                        <li class="list-item-2"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_QryEmp.aspx")%>" title="QUERY EMPLOYEE "><span>Query Employee </span></a></li>
+                                        <li class="list-item-2"><a href="<%= ResolveUrl("~/Salary/MasterForm/Frm_ChangePassword.aspx")%>" title="CHANGE PASSWORD"><span>Change Password</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/Salary/TransactionForm/FrmFilterInformation.aspx")%>"><span class="text-sidenav">Filter Inforamtion</span></a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-toggle="collapse" data-target="#Processing" class="collapsed">
+                                        <i class="fa fa-refresh fa-sidenav"></i>
+                                        <span class="text-sidenav">Processing</span>
+                                    </a>
+                                    <ul class="sidenav collapse" id="Processing">
+                                        <li runat="server"><a href="<%= ResolveUrl("~/Salary/TransactionForm/Proc_FrmSalaryProcessing.aspx")%>"><span class="text-sidenav">Monthly</span></a></li>
+                                        <li runat="server" visible="false"><a href="#"><span class="text-sidenav">Yearly</span></a></li>
+                                    </ul>
+                                </li>
+                            </asp:Panel>
+                            <li>
+                                <a href="#" data-toggle="collapse" data-target="#Report" class="collapsed  child-1"><i class="fa   fa-file-text fa-sidenav"></i><span class="text-sidenav">Report</span></a>
+                                <ul class="sidenav collapse" id="Report">
+                                    <li><a href="#" data-toggle="collapse" data-target="#MasterRpt" class="collapsed"><span class="text-sidenav">Master</span></a>
+                                        <ul class="sidenav collapse" id="MasterRpt">
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_MasterRptShow.aspx")%>" title="Master Report"><span>Master Report</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#CheckListRpt" class="collapsed"><span class="text-sidenav">CheckList</span></a>
+                                        <ul class="sidenav collapse" id="CheckListRpt">
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_EmpMasterCheckList.aspx")%>" title="Employee Check Details"><span>Employee Master Check Details</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_EmpMasterList.aspx")%>" title="Employee Check List"><span>Employee Master Check List</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_LeaveCheckList.aspx")%>" title="Leave Check List"><span>Leave Check List</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_LicPolicyChecklist.aspx")%>" title="LIC POLICY CHECK LIST"><span>Lic Policy Check List</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_LeaveOpening.aspx")%>" title="Leave Opening"><span>Leave Opening </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_LoanOpening.aspx")%>" title="Loan Opening"><span>Loan Opening </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_EmpMasterRetirmentList.aspx")%>" title="New Loan"><span>Retirement List </span></a></li>
+
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_AmendmentErDdChecklist.aspx")%>" title="Amendment Check list"><span>Amendment  Check list</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#MonthlyFinalControl" class="collapsed"><span class="text-sidenav">Monthly Report</span></a>
+                                        <ul class="sidenav collapse" id="MonthlyFinalControl">
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_SalaryrRgistation.aspx")%>" title="SALARY REGISTER"><span>Salary Register </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_SalaryPaySlip.aspx")%>" title="SALARY PAY SLIP"><span>Salary Pay Slip</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_InternalDeductionList.aspx")%>" title=" DEDUCTION LIST"><span>Deduction List</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_SalFinalControl.aspx")%>" title="FINAL CONTROL"><span>Final Control</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_SalManualFinalControl.aspx")%>" title="Supplementary PATRAK FINAL CONTROL"><span>Supplementary Patrak Final Control </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_ManualPatrakRegister.aspx")%>" title="Supplementary PATRAK REGISTRATON"><span>Supplementary Patrak Register </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_PFDDeductionList.aspx")%>"><span>PF Deduction List</span></a></li>
+                                             <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_PFDDeductionListSummary.aspx")%>"><span>PF Deduction Summary</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/RptQuterlyReport.aspx")%>"><span>Quarterly Report</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_RegularEmpStatment.aspx")%>"><span>Regular Employee Statement</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_SalaryVoucher.aspx")%>"><span>Salary Voucher</span></a></li>
+                                              <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_GlCodewishDetails.aspx")%>" title="GL Code Wish Summary"><span>GL Code Wish Summary</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#Bank_CashRpt" class="collapsed"><span class="text-sidenav">Bank / Cash </span></a>
+                                        <ul class="sidenav collapse" id="Bank_CashRpt">
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_BankBranchWise.aspx")%>" title="BANK BRANCH WISE REPORT "><span>Bank/Branch Report </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_CashRecipt.aspx")%>" title="CASH REPORT PAYMENT"><span>Cash Report Payment </span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_TaxFileCreation.aspx")%>" title="BANK BRANCH WISE TEXT FILE "><span>Bank/Branch Text File</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#YearlyRpt" class="collapsed"><span class="text-sidenav">Yearly</span></a>
+                                        <ul class="sidenav collapse" id="YearlyRpt">
+                                            <li runat="server"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_PayPostringRegister.aspx")%>"><span class="text-sidenav">Pay Posting Register</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_EmpMasterListDetails.aspx")%>" title="Employee Master Trans Details"><span>Employee Master Trans Details</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_TransLeaveLedger.aspx")%>" title="Leave Ledger"><span>Leave Ledger</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_NewLoanControl.aspx")%>"><span>New Loan Control</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/RptDesgWarkingvacant.aspx")%>"><span>Working Vacant Post</span></a></li>
+                                            <li runat="server" class="list-item-2"><a href="<%= ResolveUrl("~/Salary/Report/Rpt_RetirmentBenifit.aspx")%>"><span>Retirement Benefit</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
