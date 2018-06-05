@@ -157,7 +157,11 @@ public partial class TransactionForm_FrmLeaveOpening : System.Web.UI.Page
             }
         }
     }
-
+void ShowMessages(string Message, bool type)
+    {
+        lblMsg.Text = (type ? "" : "") + Message;
+        lblMsg.CssClass = type ? "alertMsg success" : "alertMsg failed";
+    }
     void clearAll()
     {
         txtEmployeeNo.Text = "";
