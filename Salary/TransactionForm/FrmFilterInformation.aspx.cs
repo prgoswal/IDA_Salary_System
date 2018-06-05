@@ -559,7 +559,67 @@ public partial class Salary_TransactionForm_FrmFilterInformation : System.Web.UI
             ShowMessage("Record Not Available", false);
         }
     }
+ public void BindAllDatas()
+    {
+        DataSet ds = new DataSet();
+        ds = Salary_CLSCommon.CallApiGet("FilterInformation/Bind_Getdata?Ind=1");
+        if (ds != null)
+        {
+            ChkSelectField.DataSource = ds.Tables[0];
+            ChkSelectField.DataTextField = "DisplayField";
+            ChkSelectField.DataValueField = "ActualField";
+            ChkSelectField.DataBind();
 
+            chkFilterField.DataSource = ds.Tables[1];
+            chkFilterField.DataTextField = "DeptDisplayField";
+            chkFilterField.DataValueField = "DeptActualField";
+            chkFilterField.DataBind();
+
+            chkOrderBy.DataSource = ds.Tables[2];
+            chkOrderBy.DataTextField = "OrderDisplayField";
+            chkOrderBy.DataValueField = "OrderActualField";
+            chkOrderBy.DataBind();
+
+            ChkDesignation.DataSource = ds.Tables[3];
+            ChkDesignation.DataTextField = "DesgDesc";
+            ChkDesignation.DataValueField = "DesgCd";
+            ChkDesignation.DataBind();
+
+
+            ChkDepartment.DataSource = ds.Tables[4];
+            ChkDepartment.DataTextField = "DeptName";
+            ChkDepartment.DataValueField = "DeptCode";
+            ChkDepartment.DataBind();
+
+            ChkClass.DataSource = ds.Tables[5];
+            ChkClass.DataTextField = "ClassDesc";
+            ChkClass.DataValueField = "Classind";
+            ChkClass.DataBind();
+            // ChkClass.Items.Insert(0, new ListItem("All", "0"));
+
+            ChkGrad.DataSource = ds.Tables[6];
+            ChkGrad.DataTextField = "G";
+            ChkGrad.DataValueField = "GrdCd";
+            ChkGrad.DataBind();
+
+            chkEmpType.DataSource = ds.Tables[7];
+            chkEmpType.DataTextField = "Desc1";
+            chkEmpType.DataValueField = "EmpType";
+            chkEmpType.DataBind();
+            //chkEmpType.Items.Insert(0, new ListItem("All", "0"));
+
+            foreach (ListItem listItem in ChkSelectField.Items)
+            {
+                if (listItem.Value == " A.Empno as [Emp. No.]")
+                {
+                    listItem.Selected = true;
+                    listItem.Enabled = false;
+                    return;
+                }
+
+            }
+        }
+    }
     protected void btndownload_Click(object sender, EventArgs e)
     {
         string attachment = "attachment; filename=EmployeeInfo_ExcelSheet.xls";
